@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:logo_maker/Views/tabbar_screens/logos_screen.dart';
 import 'package:logo_maker/Views/tabbar_screens/text_screen.dart';
 
 String selectedimage = 'assets/ninja.jpg';
 
 class create_screen extends StatefulWidget {
+
+
   create_screen({Key? key}) : super(key: key);
 
   @override
@@ -12,13 +15,25 @@ class create_screen extends StatefulWidget {
 }
 
 class _create_screenState extends State<create_screen> {
+  bool isSlected = false;
+
   upadateimage() {
     setState(() {});
   }
 
+   changeTextColor() {
+    setState(() {});
+  }
+  changeFontStyle() {
+    setState(() {});
+  }
+
   TextEditingController textcontroller = TextEditingController();
- // var top = 10.0;
-  //var left = 10.0;
+  var top = 10.0;
+  var left = 10.0;
+
+  // var right = 10.0;
+  // var bottom = 10.0;
 
   @override
   Widget build(BuildContext context) {
@@ -29,45 +44,50 @@ class _create_screenState extends State<create_screen> {
           child: SingleChildScrollView(
             child: Column(
               children: [
-                // Row(
-                //   children: [
-                //     Icon(Icons.arrow_back),
-                //     SizedBox(
-                //       width: 240,
-                //     ),
-                //     Icon(Icons.subdirectory_arrow_left),
-                //    SizedBox(
-                //       width: 10,
-                //     ),
-                //     Icon(Icons.subdirectory_arrow_right),
-                //     SizedBox(
-                //       width: 10,
-                //     ),
-                //     Icon(Icons.weekend),
-                //   ],
-                // ),
                 Container(
                   height: 435,
                   width: double.infinity,
-                  color: Colors.yellow[100],
-                  child: Stack(
-                    children: [
-                      Center(
-                        child: Container(
-                            height: 300,
-                            width: 300,
-                            child: Image(
-                              image: AssetImage(selectedimage),
-                            )),
-                      ),
-                      Center(
-                        child: Text(
-                            textcontroller.text,
-                            style:
-                                TextStyle(fontSize: 19, color: Colors.white),
+                  color: Colors.black54,
+                  child: GestureDetector(
+                    child: Stack(
+                      children: [
+                        Center(
+                          child: Container(
+                              height: 300,
+                              width: 300,
+                              child: Image(
+                                image: AssetImage(selectedimage),
+                              )),
+                        ),
+                        Positioned(
+                          top: top,
+                          left: left,
+                          child: Container(
+                            decoration: BoxDecoration(
+                                border:
+                                    Border.all(color: Colors.black, width: 1)),
+                            child: InkWell(
+                              onTap: () {},
+                              child: Text(
+                                textcontroller.text,style: fontStyle.copyWith(
+                                color: newColor.withOpacity(0.6),
+                                fontSize: 30,
+                                
+                              ),
+
+                              ),
+                            ),
                           ),
-                      ),
-                    ],
+                        ),
+                      ],
+                    ),
+                    onVerticalDragUpdate: (DragUpdateDetails dd) {
+                      print(dd);
+                      setState(() {
+                        top = dd.localPosition.dy;
+                        left = dd.localPosition.dx;
+                      });
+                    },
                   ),
                 ),
                 SizedBox(
@@ -105,7 +125,7 @@ class _create_screenState extends State<create_screen> {
                       Logo_screen(callbackfunction: upadateimage),
                       // Container(),
                       Container(),
-                      Text_screen(),
+                      Text_screen(callbackfunctionForText: changeTextColor,callbackfunctionForTextStyle: changeFontStyle,),
                       Container(),
                       Container(),
                       Container(),
@@ -189,7 +209,6 @@ class _create_screenState extends State<create_screen> {
               ],
             ),
           );
-        }
-        );
+        });
   }
 }

@@ -5,6 +5,7 @@ import 'package:logo_maker/Views/create_screen.dart';
 class Logo_screen extends StatefulWidget {
   final selectedimage;
   final Function callbackfunction;
+
   const Logo_screen(
       {Key? key, this.selectedimage, required this.callbackfunction})
       : super(key: key);
