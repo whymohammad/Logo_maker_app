@@ -1,13 +1,17 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:logo_maker/utlities/logic.dart';
 import 'package:logo_maker/Views/tabbar_screens/logos_screen.dart';
 import 'package:logo_maker/Views/tabbar_screens/text_screen.dart';
 
-String selectedimage = 'assets/ninja.jpg';
+import 'tabbar_screens/bgs_screens.dart';
+
+String selectedbgs = '';
+String selectedimage = '';
+bool isgradient = false;
 
 class create_screen extends StatefulWidget {
-
-
   create_screen({Key? key}) : super(key: key);
 
   @override
@@ -21,19 +25,21 @@ class _create_screenState extends State<create_screen> {
     setState(() {});
   }
 
-   changeTextColor() {
+  changeTextColor() {
     setState(() {});
   }
+
   changeFontStyle() {
+    setState(() {});
+  }
+
+  changeBgsImage() {
     setState(() {});
   }
 
   TextEditingController textcontroller = TextEditingController();
   var top = 10.0;
   var left = 10.0;
-
-  // var right = 10.0;
-  // var bottom = 10.0;
 
   @override
   Widget build(BuildContext context) {
@@ -44,52 +50,348 @@ class _create_screenState extends State<create_screen> {
           child: SingleChildScrollView(
             child: Column(
               children: [
-                Container(
-                  height: 435,
-                  width: double.infinity,
-                  color: Colors.black54,
-                  child: GestureDetector(
-                    child: Stack(
-                      children: [
-                        Center(
-                          child: Container(
-                              height: 300,
-                              width: 300,
-                              child: Image(
-                                image: AssetImage(selectedimage),
-                              )),
-                        ),
-                        Positioned(
-                          top: top,
-                          left: left,
-                          child: Container(
+                Logic.isBgs == false
+                    ? selectedbgs == ''
+                        ? selectedimage == ''
+                            ? Container(
+                                height: 435,
+                                width: double.infinity,
+                              )
+                            : Container(
+                                child: Center(
+                                  child: Container(
+                                      height: 435,
+                                      width: 300,
+                                      child: Image(
+                                        image: AssetImage(selectedimage),
+                                      )),
+                                ),
+                              )
+                        : selectedimage == ''
+                            ? Container(
+                                height: 435,
+                                width: double.infinity,
+                                // color: Colors.black54,
+                                decoration: BoxDecoration(
+                                  image: DecorationImage(
+                                      image: AssetImage(selectedbgs),
+                                      fit: BoxFit.cover),
+                                ),
+                                child: GestureDetector(
+                                  child: Stack(
+                                    children: [
+                                      Center(
+                                          // child: Container(
+                                          //     height: 300,
+                                          //     width: 300,
+                                          //     child: Image(
+                                          //       image: AssetImage(selectedimage),
+                                          //     )),
+                                          ),
+                                      Positioned(
+                                        top: top,
+                                        left: left,
+                                        child: Container(
+                                          decoration: BoxDecoration(
+                                              border: Border.all(
+                                                  color: Colors.black,
+                                                  width: 1)),
+                                          child: Opacity(
+                                            opacity: Opacityvalue,
+                                            child: Logic.isGradient
+                                                ? Text(
+                                                    textcontroller.text,
+                                                    style: fontStyle.copyWith(
+                                                        color: newColor,
+                                                        fontSize: 30,
+                                                        letterSpacing:
+                                                            Spacingvalue,
+                                                        shadows: <Shadow>[
+                                                          Shadow(
+                                                            color: Logic
+                                                                .shadowColors,
+                                                            blurRadius: Logic
+                                                                .shadowRadius,
+                                                            offset: Offset(
+                                                              Logic.shadowDx,
+                                                              Logic.shadowDy,
+                                                            ),
+                                                          ),
+                                                        ]),
+                                                  )
+                                                : Text(
+                                                    textcontroller.text,
+                                                    style: fontStyle.copyWith(
+                                                      //color: newColor,
+                                                      fontSize: 30,
+                                                      letterSpacing:
+                                                          Spacingvalue,
+                                                      foreground: Paint()
+                                                        ..shader = newtextgrad
+                                                            .createShader(
+                                                          Rect.fromLTWH(
+                                                              0.0,
+                                                              0.0,
+                                                              200.0,
+                                                              100.0),
+                                                        ),
+                                                    ),
+                                                  ),
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  onVerticalDragUpdate: (DragUpdateDetails dd) {
+                                    print(dd);
+                                    setState(() {
+                                      top = dd.localPosition.dy;
+                                      left = dd.localPosition.dx;
+                                    });
+                                  },
+                                ),
+                              )
+                            : Container(
+                                height: 435,
+                                width: double.infinity,
+                                // color: Colors.black54,
+                                decoration: BoxDecoration(
+                                  image: DecorationImage(
+                                      image: AssetImage(selectedbgs),
+                                      fit: BoxFit.cover),
+                                ),
+                                child: GestureDetector(
+                                  child: Stack(
+                                    children: [
+                                      Center(
+                                        child: Container(
+                                            height: 300,
+                                            width: 300,
+                                            child: Image(
+                                              image: AssetImage(selectedimage),
+                                            )),
+                                      ),
+                                      Positioned(
+                                        top: top,
+                                        left: left,
+                                        child: Container(
+                                          decoration: BoxDecoration(
+                                              border: Border.all(
+                                                  color: Colors.black,
+                                                  width: 1)),
+                                          child: Opacity(
+                                            opacity: Opacityvalue,
+                                            child: Logic.isGradient
+                                                ? Text(
+                                                    textcontroller.text,
+                                                    style: fontStyle.copyWith(
+                                                        color: newColor,
+                                                        fontSize: 30,
+                                                        letterSpacing:
+                                                            Spacingvalue,
+                                                        shadows: <Shadow>[
+                                                          Shadow(
+                                                            color: Logic
+                                                                .shadowColors,
+                                                            blurRadius: Logic
+                                                                .shadowRadius,
+                                                            offset: Offset(
+                                                              Logic.shadowDx,
+                                                              Logic.shadowDy,
+                                                            ),
+                                                          ),
+                                                        ]),
+                                                  )
+                                                : Text(
+                                                    textcontroller.text,
+                                                    style: fontStyle.copyWith(
+                                                      //color: newColor,
+                                                      fontSize: 30,
+                                                      letterSpacing:
+                                                          Spacingvalue,
+                                                      foreground: Paint()
+                                                        ..shader = newtextgrad
+                                                            .createShader(
+                                                          Rect.fromLTWH(
+                                                              0.0,
+                                                              0.0,
+                                                              200.0,
+                                                              100.0),
+                                                        ),
+                                                    ),
+                                                  ),
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  onVerticalDragUpdate: (DragUpdateDetails dd) {
+                                    print(dd);
+                                    setState(() {
+                                      top = dd.localPosition.dy;
+                                      left = dd.localPosition.dx;
+                                    });
+                                  },
+                                ),
+                              )
+                    : Logic.selectedEffect == '' || selectedimage == ''
+                        ? Container(
+                            height: 435,
+                            width: double.infinity,
                             decoration: BoxDecoration(
-                                border:
-                                    Border.all(color: Colors.black, width: 1)),
-                            child: InkWell(
-                              onTap: () {},
-                              child: Text(
-                                textcontroller.text,style: fontStyle.copyWith(
-                                color: newColor.withOpacity(0.6),
-                                fontSize: 30,
-                                
+                              color: Logic.bgsColors,
+                              image: DecorationImage(
+                                  colorFilter: ColorFilter.mode(
+                                      Logic.bgsColors, BlendMode.color),
+                                  image: AssetImage(Logic.selectedEffect),
+                                  fit: BoxFit.cover),
+                            ),
+                            child: GestureDetector(
+                              child: Stack(
+                                children: [
+                                  // Center(
+                                  //   child: Container(
+                                  //       height: 300,
+                                  //       width: 300,
+                                  //       child: Image(
+                                  //         image: AssetImage(selectedimage),
+                                  //       )),
+                                  // ),
+                                  Positioned(
+                                    top: top,
+                                    left: left,
+                                    child: Container(
+                                      decoration: BoxDecoration(
+                                          border: Border.all(
+                                              color: Colors.black, width: 1)),
+                                      child: Opacity(
+                                        opacity: Opacityvalue,
+                                        child: Logic.isGradient
+                                            ? Text(
+                                                textcontroller.text,
+                                                style: fontStyle.copyWith(
+                                                    color: newColor,
+                                                    fontSize: 30,
+                                                    letterSpacing: Spacingvalue,
+                                                    shadows: <Shadow>[
+                                                      Shadow(
+                                                        color:
+                                                            Logic.shadowColors,
+                                                        blurRadius:
+                                                            Logic.shadowRadius,
+                                                        offset: Offset(
+                                                          Logic.shadowDx,
+                                                          Logic.shadowDy,
+                                                        ),
+                                                      ),
+                                                    ]),
+                                              )
+                                            : Text(
+                                                textcontroller.text,
+                                                style: fontStyle.copyWith(
+                                                  //color: newColor,
+                                                  fontSize: 30,
+                                                  letterSpacing: Spacingvalue,
+                                                  foreground: Paint()
+                                                    ..shader = newtextgrad
+                                                        .createShader(
+                                                      Rect.fromLTWH(0.0, 0.0,
+                                                          200.0, 100.0),
+                                                    ),
+                                                ),
+                                              ),
+                                      ),
+                                    ),
+                                  ),
+                                ],
                               ),
-
+                              onVerticalDragUpdate: (DragUpdateDetails dd) {
+                                print(dd);
+                                setState(() {
+                                  top = dd.localPosition.dy;
+                                  left = dd.localPosition.dx;
+                                });
+                              },
+                            ),
+                          )
+                        : Container(
+                            height: 435,
+                            width: double.infinity,
+                            decoration: BoxDecoration(
+                                color: Logic.bgsColors,
+                                image: DecorationImage(
+                                    colorFilter: ColorFilter.mode(
+                                        Logic.bgsColors, BlendMode.color),
+                                    image: AssetImage(Logic.selectedEffect),
+                                    fit: BoxFit.cover)),
+                            child: GestureDetector(
+                              child: Stack(
+                                children: [
+                                  Center(
+                                    child: Container(
+                                        height: 300,
+                                        width: 300,
+                                        child: Image(
+                                          image: AssetImage(selectedimage),
+                                        )),
+                                  ),
+                                  Positioned(
+                                    top: top,
+                                    left: left,
+                                    child: Container(
+                                      decoration: BoxDecoration(
+                                          border: Border.all(
+                                              color: Colors.black, width: 1)),
+                                      child: Opacity(
+                                        opacity: Opacityvalue,
+                                        child: Logic.isGradient
+                                            ? Text(
+                                                textcontroller.text,
+                                                style: fontStyle.copyWith(
+                                                    color: newColor,
+                                                    fontSize: 30,
+                                                    letterSpacing: Spacingvalue,
+                                                    shadows: <Shadow>[
+                                                      Shadow(
+                                                        color:
+                                                            Logic.shadowColors,
+                                                        blurRadius:
+                                                            Logic.shadowRadius,
+                                                        offset: Offset(
+                                                          Logic.shadowDx,
+                                                          Logic.shadowDy,
+                                                        ),
+                                                      ),
+                                                    ]),
+                                              )
+                                            : Text(
+                                                textcontroller.text,
+                                                style: fontStyle.copyWith(
+                                                  //color: newColor,
+                                                  fontSize: 30,
+                                                  letterSpacing: Spacingvalue,
+                                                  foreground: Paint()
+                                                    ..shader = newtextgrad
+                                                        .createShader(
+                                                      Rect.fromLTWH(0.0, 0.0,
+                                                          200.0, 100.0),
+                                                    ),
+                                                ),
+                                              ),
+                                      ),
+                                    ),
+                                  ),
+                                ],
                               ),
+                              onVerticalDragUpdate: (DragUpdateDetails dd) {
+                                print(dd);
+                                setState(() {
+                                  top = dd.localPosition.dy;
+                                  left = dd.localPosition.dx;
+                                });
+                              },
                             ),
                           ),
-                        ),
-                      ],
-                    ),
-                    onVerticalDragUpdate: (DragUpdateDetails dd) {
-                      print(dd);
-                      setState(() {
-                        top = dd.localPosition.dy;
-                        left = dd.localPosition.dx;
-                      });
-                    },
-                  ),
-                ),
                 SizedBox(
                   height: 13,
                 ),
@@ -106,7 +408,6 @@ class _create_screenState extends State<create_screen> {
                       InkWell(
                         onTap: () {
                           dialoguebox(textcontroller);
-                          //Navigator.push(context, MaterialPageRoute(builder: (ctx)=>Text_screen(),),);
                         },
                         child: Tab(icon: Icon(Icons.title), text: 'Text'),
                       ),
@@ -125,8 +426,13 @@ class _create_screenState extends State<create_screen> {
                       Logo_screen(callbackfunction: upadateimage),
                       // Container(),
                       Container(),
-                      Text_screen(callbackfunctionForText: changeTextColor,callbackfunctionForTextStyle: changeFontStyle,),
-                      Container(),
+                      Text_screen(
+                        callbackfunctionForText: changeTextColor,
+                        callbackfunctionForTextStyle: changeFontStyle,
+                      ),
+                      BackGroundImages(
+                        callbackfunctionforbgs: changeBgsImage,
+                      ),
                       Container(),
                       Container(),
                     ],
