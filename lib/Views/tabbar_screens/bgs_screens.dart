@@ -102,6 +102,7 @@ class _BackGroundImagesState extends State<BackGroundImages> {
             selectedTab == 2 ? effectsWidget():Container(),
             selectedTab == 3 ? gradientWidget():Container(),
             selectedTab == 4 ? OpactyWidget(): Container(),
+            selectedTab == 5 ? ClearWidget(): Container(),
             Row(
               children: [
                 InkWell(
@@ -270,6 +271,7 @@ class _BackGroundImagesState extends State<BackGroundImages> {
               onTap: () {
                 setState(() {
                   Logic.isBgs = true;
+                  Logic.isColors = false;
                   Logic.bgsColors = bgscolors[i];
                   widget.callbackfunctionforbgs();
 
@@ -303,6 +305,11 @@ class _BackGroundImagesState extends State<BackGroundImages> {
             return InkWell(
               onTap: (){
                 setState(() {
+                  Logic.isColors = true;
+                Logic.bgsgradient = bgsgradients[i];
+                widget.callbackfunctionforbgs();
+
+
 
                 });
               },
@@ -322,7 +329,7 @@ class _BackGroundImagesState extends State<BackGroundImages> {
 
   OpactyWidget() {
     return Container(
-      height: 185,
+      height: 173,
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 10),
         child: Row(
@@ -370,12 +377,16 @@ class _BackGroundImagesState extends State<BackGroundImages> {
               itemBuilder: (context,i){
                 return InkWell(
                   onTap: (){
-                    setState(() {
+                    setState((
+
+                        ) {
                       Logic.selectedEffect = bgsEffects[i];
                        widget.callbackfunctionforbgs();
+
                     });
 
                   },
+
                   child: Container(
                     decoration: BoxDecoration(
 
@@ -391,6 +402,26 @@ class _BackGroundImagesState extends State<BackGroundImages> {
               }),
         ),
       ],
+    );
+  }
+
+  ClearWidget() {
+    return Container(
+      width: 500,
+      height: 174,
+      child: InkWell(
+        onTap: (){
+          setState(() {
+            Logic.selectedEffect = '';
+            selectedimage = '';
+            selectedbgs = '';
+            Logic.selectedEffect = '';
+            widget.callbackfunctionforbgs();
+
+          });
+        },
+          child: Center(child: Text('Clear All',style: TextStyle(color: Colors.black,fontSize: 30),))),
+
     );
   }
 }
