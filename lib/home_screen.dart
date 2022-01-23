@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
 import 'Views/create_screen.dart';
+import 'Views/save_screen.dart';
 
 class home_screen extends StatefulWidget {
   const home_screen({Key? key}) : super(key: key);
@@ -132,7 +133,11 @@ class _home_screenState extends State<home_screen> {
 
                     color: Colors.transparent,
                   ),
-                  child: Center(child: Text('SAVED',style: TextStyle(color: Colors.white,fontSize: 18,fontWeight: FontWeight.bold),)),
+                  child: InkWell(
+                    onTap: (){
+                      Navigator.push(context, MaterialPageRoute(builder: (ctx)=>SaveScreen(),),);
+                    },
+                      child: Center(child: Text('SAVED',style: TextStyle(color: Colors.white,fontSize: 18,fontWeight: FontWeight.bold),))),
                 ),
                 SizedBox(
                   width: 15,
