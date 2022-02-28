@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:get/get_navigation/src/extension_navigation.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:logo_maker/utlities/slider.dart';
 
@@ -167,7 +169,7 @@ class _Text_screenState extends State<Text_screen> {
 
   FontsWidget() {
     return Container(
-        height: 185,
+        height:Get.height*0.243,
         width: 500,
         child:GridView.builder(
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 5),
@@ -207,7 +209,7 @@ class _Text_screenState extends State<Text_screen> {
 
   ColorsWidget() {
     return Container(
-      height: 185,
+      height: Get.height*0.243,
       width: 500,
       child: GridView.builder(
           itemCount: colors.length,
@@ -242,7 +244,7 @@ class _Text_screenState extends State<Text_screen> {
 
   GradientsWidget() {
     return Container(
-      height: 185,
+      height: Get.height*0.243,
       width: 500,
       child: GridView.builder(
           itemCount: textgradients.length,
@@ -407,7 +409,7 @@ class _Text_screenState extends State<Text_screen> {
 
   spacingWidget() {
     return Container(
-      height: 185,
+      height: Get.height*0.243,
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 10),
         child: Row(
@@ -480,7 +482,7 @@ class _Text_screenState extends State<Text_screen> {
 
   patternWidget() {
     return Container(
-      height: 185,
+      height: Get.height*0.243,
       width: double.infinity,
       child: GridView.builder(
           itemCount: 20,
@@ -504,7 +506,7 @@ class _Text_screenState extends State<Text_screen> {
 
   opacityWideget() {
     return Container(
-      height: 185,
+      height: Get.height*0.243,
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 10),
         child: Row(

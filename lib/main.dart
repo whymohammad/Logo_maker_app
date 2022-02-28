@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import 'home_screen.dart';
 
@@ -19,7 +20,7 @@ class _MyAppState extends State<MyApp> {
   
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
       debugShowCheckedModeBanner: false,
 
       home: Splashscreen(),
@@ -52,5 +53,7 @@ class _SplashscreenState extends State<Splashscreen> {
     );
   }
 }
+
+
 
 

@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:logo_maker/Views/create_screen.dart';
 import 'package:logo_maker/utlities/logic.dart';
 class BackGroundImages extends StatefulWidget {
@@ -112,7 +113,7 @@ class _BackGroundImagesState extends State<BackGroundImages> {
                   });
                   },
                   child: Padding(
-                    padding: const EdgeInsets.only(left: 15),
+                    padding: const EdgeInsets.only(left: 10),
                     child: Column(
                       children: [
                         Icon(Icons.collections_outlined,size: 35,),
@@ -219,7 +220,7 @@ class _BackGroundImagesState extends State<BackGroundImages> {
     return Container(
       // color: Colors.black87,
       width: 500,
-      height: 174,
+      height: Get.height*0.23,
       child: GridView.builder(
           itemCount: bgsImages.length,
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
@@ -257,7 +258,7 @@ class _BackGroundImagesState extends State<BackGroundImages> {
 
   colorsWidget() {
     return Container(
-      height: 174,
+      height: Get.height*0.23,
       width: 500,
       child: GridView.builder(
           itemCount: bgscolors.length,
@@ -292,7 +293,7 @@ class _BackGroundImagesState extends State<BackGroundImages> {
 
   gradientWidget() {
     return Container(
-      height: 174,
+      height: Get.height*0.23,
       width: 500,
       child: GridView.builder(
           itemCount: bgsgradients.length,
@@ -304,7 +305,10 @@ class _BackGroundImagesState extends State<BackGroundImages> {
           itemBuilder: (context, i) {
             return InkWell(
               onTap: (){
+
                 setState(() {
+                  Logic.isBgs = true;
+
                   Logic.isColors = true;
                 Logic.bgsgradient = bgsgradients[i];
                 widget.callbackfunctionforbgs();
@@ -329,7 +333,7 @@ class _BackGroundImagesState extends State<BackGroundImages> {
 
   OpactyWidget() {
     return Container(
-      height: 173,
+      height: Get.height*0.23,
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 10),
         child: Row(
@@ -364,7 +368,7 @@ class _BackGroundImagesState extends State<BackGroundImages> {
         Container(
           // color: Colors.black87,
           width: 500,
-          height: 174,
+          height: Get.height*0.23,
           child: GridView.builder(
               itemCount: bgsEffects.length,
               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
@@ -408,7 +412,7 @@ class _BackGroundImagesState extends State<BackGroundImages> {
   ClearWidget() {
     return Container(
       width: 500,
-      height: 174,
+      height: Get.height*0.23,
       child: InkWell(
         onTap: (){
           setState(() {
